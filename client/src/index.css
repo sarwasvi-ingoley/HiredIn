@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*{
+  font-family: "Lato" ,serif;
+}
+
+.navbar-custom{
+  background-color:#161818;
+}
+.nav-link{
+  color:#f1e9e9;
+  
+  
+}
+.navbar a:hover {
+  /* color:rgb(247, 247, 247); */
+  color:rgb(131, 131, 138) !important;
+}
+.navbar-brand{
+  color:#f1e9e9;
+}
+.navbar_style{
+  background-color:#161818;
+}
+a:link, a:visited,a:hover, a:active{
+  color: #f1e9e9;
+}
+.nav-item{
+  color: #f1e9e9;
+}
+
+html{
+  scroll-behavior: smooth;
+  font-family: PT-Serif;
+}
+.box {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+
+
+.ourfacility {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  padding-bottom: 30px;
+  padding: 0 10px;
+  min-height: 250px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: rgb(247, 247, 247); 
+  transition: all 0.4s ease-in-out;
+  /* box-shadow: 0 0 25px 0 rgba(20, 27, 202, 0.17); */
+}
+.boximage p{
+  text-align-last:start;
+}
+
+.ourfacility:hover{
+  box-shadow: 0 0 40px 0 rgba(20, 20, 20, 0.2);
+}
+.context{
+  text-align:left;
+  font-weight: 550;
+  font-size: 16px;
+  color: rgb(80, 78, 78);
+  
+}
+
+.aboutinfo{
+  margin-top: 50px;
+  font-weight: 550;
+  font-size: 16px;
+  color: rgb(80, 78, 78);
+}
+.sub-heading{
+  text-align:left;
+  font-weight: 600;
+  font-size: 24px;
+}
+.catgimg{
+  margin-bottom: 15px;
+}
+.ctext{
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(114, 112, 112);
+  
+}
+.internship{
+  width: 900px;
+  padding: 20px;
+  background-color: rgb(232, 248, 248);
+  margin: 10px auto;
+  justify-content:center;
+  border-radius: 10px;
+}
+.detaillink{
+  float: right;
+  color:#022b2b;
+}
+.internship:hover{
+  box-shadow: 0 0 5px rgb(36, 35, 35);
+  transform: translate(-1vmax);
+}
