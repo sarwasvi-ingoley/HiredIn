@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const multer = require('multer');
 const { getAllInternships, getInternshipdetails } = require("../controllers/internshipcontroller");
 const bcrypt = require("bcryptjs");
 const authenticate = require('../middleware/authenticate');
@@ -39,11 +40,11 @@ router.post("/register", async (req, res) => {
       const userRegister = await user.save();
 
       if (userRegister) {
-        res.status(201).send("data is inserted");
+        return res.status(201).json({ message: "Invalid credentials" });
       }
     }
   } catch (error) {
-    res.status(500).send("there is an error");
+    res.status(500).json({ error: "There is an error" });
     console.log(error);
   }
 });
@@ -114,23 +115,61 @@ router.post("/contact", authenticate, async (req, res) => {
     }
 });
 
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, './files');
+    },
+    filename(req, file, cb) {
+      cb(null, `${new Date().getTime()}_${file.originalname}`);
+    }
+  }),
+  limits: {
+    fileSize: 1000000 // max file size 1MB = 1000000 bytes
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(pdf|doc|docx)$/)) {
+      return cb(
+        new Error(
+          'only upload files with pdf, doc, docx format.'
+        )
+      );
+    }
+    cb(undefined, true); // continue with upload
+  }
+});
+
 // apply 
 router.post("/applyinternship", authenticate, async (req, res) => {
   try {
     console.log(req.body);
+    // for (var [key, value] of req.body.entries()) { 
+    //   console.log(key, value);
+    // }
+    // console.log(req.formData);
     const {job_id, name, email, phone, college, resume} = req.body;
     if(!name || !email || !phone || ! college || !resume) {
-      console.log("Please fill the contact form");
-      return res.status(400).json({error: "Please fill the contact form"})
+      console.log("Please fill the apply form");
+      return res.status(400).json({error: "Please fill the apply form"})
     }
     const jobApply = await Job.findOne({_id: job_id});
+    console.log(jobApply)
     if(jobApply) {
-      const userMessage = await  jobApply.addApply(name, email, phone, college, resume);
-      await jobApply.save();
-      res.status(201).json({message: "User internship added successfully"});
+      if(! await Job.findOne({applied_by: {$elemMatch: {email: email}}})) {
+        const userMessage = await  jobApply.addApply(name, email, phone, college, resume);
+        await jobApply.save();
+        console.log('Application sent successfully')
+        res.status(201).json({message: "User internship added successfully"});
+      } else{
+        res.status(400).json({error: "You have already filled the application"})
+      }
+    } else {
+      console.log('Job not found')
+      res.status(400).json({error: "Job not found"})
     }
   } catch(error) {
-
+    console.log(error)
+    res.status(400).json({error: "There is a error"})
   }
 });
 

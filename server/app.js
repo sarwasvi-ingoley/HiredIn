@@ -42,9 +42,9 @@ app.get("/about", (req, res) => {
 app.get("/signin", (req, res) => {
   res.send("Hello signin from the server");
 });
-app.get("/signup", (req, res) => {
-  res.send("Hello signup from the server");
-});
+// app.get("/signup", (req, res) => {
+//   res.send("Hello signup from the server");
+// });
 
 app.listen(3001, () => {
   console.log("Server is running at port 3001");

@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import contactimage from "../images/contactus.png";
+import {useHistory, useLocation} from 'react-router-dom';
 
-function ApplyInternship() {
-    // for on change event
+const ApplyInternship = () => {
+ 
+  // for on change event
   const [userData, setUserData] = useState({name: "", email: "", phone: "", college: "", resume: ""})
   const [pdfFile, setPdfFile] = useState(null);
-
+  const formData = new FormData();
+  const {state} = useLocation();
+  const job_id = JSON.stringify(state)
+  const history = useHistory();
   // don't touch this
   const userContact = async() => {
     try {
@@ -35,17 +40,22 @@ function ApplyInternship() {
         if(file && fileType.includes(file.type)) {
             let reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onloadend = (e) => {
+            if(file.name.match(/\.(pdf)$/)) {
+              reader.onloadend = (e) => {
                 console.log(e.target.result);
                 setUserData({ ...userData, resume: e.target.result });
+              }
+            } else {
+              alert('Upload pdf files only')
             }
         }
     } else {
         setPdfFile(null);
         console.log('Select your file');
     }
-    const formData = new FormData();
-    formData.append('pdf', file);
+    
+    formData.append('resume', file);
+    
 
     const config = {
       headers: {
@@ -54,6 +64,7 @@ function ApplyInternship() {
     }
  }
   useEffect(() => {
+    console.log({state})
     userContact();
   }, []);
 
@@ -67,27 +78,40 @@ function ApplyInternship() {
   const applyForm = async (e) => {
     e.preventDefault();
     const {name, email, phone, college, resume} = userData;
-    console.log(userData)
-    // const {name, email, phone, message} = userData;
-    // console.log(userData)
-    // console.log(name, email, phone, message)
-    //  const res = await fetch('/contact', {
-    //    method: "POST",
-    //    headers: {
-    //     "Content-Type": "application/json",
-    //     'Accept': 'application/json'
-    //    },
-    //    body: JSON.stringify({
-    //      name, email, phone, message,
-    //    }),
-    //  });
-    //  const data = await res.json();
-    //  if(!data) {
-    //    console.log("Message not sent");
-    //  } else {
-    //    alert("Message sent");
-    //    setUserData({...userData, message: ""});
-    //  }
+    console.log({name, email, phone, college, resume})
+    formData.append('job_id', job_id);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('college', college);
+    for (var [key, value] of formData.entries()) { 
+      console.log(key, value);
+    }
+    const res = await fetch('/applyinternship', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": 'multipart/form-data',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        job_id: state,
+        name, email, phone, college, 
+        resume: "res",
+        // resume,
+      }),
+      // body: formData,
+    });
+    const data = await res.json();
+    if(res.status === 400 || !data) {
+      console.log("Application not sent");
+      alert(data.error)
+    } else if(res.status === 201 && data){
+      alert("Application sent");
+      history.push("/internships");
+    } else {
+      console.log("Application not sent");
+    }
   }
 
   return (
@@ -131,71 +155,6 @@ function ApplyInternship() {
                 </div>
             </div>
         </>
-
-    
-    // <div>
-    //   <h1 className="text-center mt-4">Get in Touch</h1>
-
-    //   <div className="container">
-    //     <form method = "POST">
-    //       <div className="form-group">
-    //         <label for="exampleInputEmail1">Your Name</label>
-    //         <input
-    //           type="text"
-    //           className="form-control"
-    //           id="exampleInputEmail1"
-    //           aria-describedby="emailHelp"
-    //           name = "name"
-    //           value = {userData.name}
-    //           placeholder="Your Name"
-    //           onChange = {handleInputs}
-    //         />
-    //       </div>
-    //       <div className="form-group">
-    //         <label for="exampleInputEmail1">Email address</label>
-    //         <input
-    //           type="email"
-    //           className="form-control"
-    //           id="exampleInputEmail1"
-    //           aria-describedby="emailHelp"
-    //           name = "email"
-    //           value = {userData.email} 
-    //           placeholder="Your Email"
-    //           onChange = {handleInputs}
-    //         />
-    //       </div>
-    //       <div className="form-group">
-    //         <label for="exampleInputPassword1">Your Phone</label>
-    //         <input
-    //           type="text"
-    //           className="form-control"
-    //           id="exampleInputPassword1"
-    //           name = "phone"
-    //           value = {userData.phone}
-    //           placeholder="Your Phone"
-    //           onChange = {handleInputs}
-    //         />
-    //       </div>
-    //       <div className="form-group">
-    //         <label for="exampleInputPassword1">Your Message</label>
-    //         <textarea
-    //           className="form-control"
-    //           id="exampleInputPassword1"
-    //           name = "message"
-    //           value = {userData.message}
-    //           placeholder="Your Message"
-    //           onChange = {handleInputs}
-    //         ></textarea>
-    //       </div>
-
-    //       <div className="text-center">
-    //         <button type="submit" className="btn btn-primary  m-4" onClick = {contactForm}>
-    //           Send Message
-    //         </button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 }
 

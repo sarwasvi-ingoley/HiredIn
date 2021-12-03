@@ -34,13 +34,7 @@ function Internships() {
     callInternshipPage();
     getAllData();
   }, []);
-
-    // const url = 'http://localhost:4000/api/v1/internships'
-
-    // useEffect(() => {
-    //     getAllData();
-    // }, [])
-
+  
     async function getAllData() {
         const response = await fetch('/api/v1/getinternships')
         const data = await response.json()
@@ -61,18 +55,18 @@ function Internships() {
                 data.display_internships.map((item)=>(
                     <div className = "internship col-md-10 col-12 mx-auto">
                  <div className ="internship_info">
+                   {/* <ApplyInternship message = "message" /> */}
                      <p className ="company_name">{item.company}</p>
                      <p className= "internship_name">{item.internship}</p>
                      <p className = "stipend">{item.stipend}</p>
                      <div className ="viewintrndetails" style ={{marginBottom: '30px'}}>
                      <Link exact className="detaillink" style={{ color: '#022b2b'}}  to={{
     pathname: "/applyinternship",
-    /*state: data */}}>Apply Now</Link>
+    state: item._id}}>Apply Now</Link>
                      </div>  
                  </div>
                  </div>
-                ))
-                 
+              ))         
             }
         </div>
     </>
