@@ -104,7 +104,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <div classNameName ="container-fluid navbar_style" style ={{backgroundColor:'#161818'}}>
+      <div className ="container-fluid navbar_style" style ={{backgroundColor:'#161818'}}>
         <div className ="row">
             <div className = "col-md-10 col-12 mx-auto">
                 <nav className="navbar navbar-expand-lg navbar-custom">
