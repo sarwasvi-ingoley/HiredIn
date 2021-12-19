@@ -18,33 +18,11 @@ const Navbar = () => {
             <NavLink exact className="nav-link"  to="/contact">Contact</NavLink>
           </li>
           <li className="nav-item">
+              <NavLink exact className="nav-link"  to="/appliedat">Applied At</NavLink>
+          </li>
+          <li className="nav-item">
               <NavLink exact className="nav-link"  to="/logout">Logout</NavLink>
           </li>
-          {/* <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/internships">
-                Internships
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contact
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout">
-                Logout
-              </Link>
-            </li> */}
         </>
       )
     } else{
@@ -57,7 +35,7 @@ const Navbar = () => {
               <NavLink exact className="nav-link"  to="/about">About Us</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink exact className="nav-link"  to="/contact">Contact</NavLink>
+              <NavLink exact className="nav-link"  to="/contact">Contact Us</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink exact className="nav-link"  to="/login">Login</NavLink>
@@ -65,36 +43,6 @@ const Navbar = () => {
             <li className="nav-item">
                 <NavLink exact className="nav-link"  to="/signup">Sign Up</NavLink>
             </li>
-          {/* <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li> */}
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li> */}
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/internships">
-                Internships
-              </Link>
-            </li> */}
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contact
-              </Link>
-            </li> */}
-          {/* <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Sign in
-              </Link>
-            </li> */}
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/signup">
-                Sign up
-              </Link>
-            </li> */}
         </>
       )
     }

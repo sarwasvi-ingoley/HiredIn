@@ -144,9 +144,14 @@ const Internships= ({onLocationFilter}) => {
                      </div>
                     
                      <div className ="applydetails" style ={{marginBottom: '30px'}}>
-                     <Link exact className="detaillink" style={{ color: '#022b2b'}}  to={{
+                     {/* <Link exact className="detaillink" style={{ color: '#022b2b'}}  to={{
                           pathname: "/applyinternship",
-                          state: item._id}}>Apply Now</Link>
+                          state: item._id}}>Apply Now</Link> */}
+                      <Link exact className="detaillink" style={{ color: '#022b2b'}}  to={{
+                          pathname: "/applyinternship",
+                          state: {
+                            job_id: item._id,
+                            company_name: item.company,}}}>Apply Now</Link>
                      </div>  
                  </div>
                 </div>

@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const multer = require('multer');
-const { getAllInternships, getInternshipdetails } = require("../controllers/internshipcontroller");
+const { getAllInternships, getInternshipdetails, uploadUserResume } = require("../controllers/internshipcontroller");
 const bcrypt = require("bcryptjs");
 const authenticate = require('../middleware/authenticate');
 require("../db/conn");
@@ -115,10 +115,47 @@ router.post("/contact", authenticate, async (req, res) => {
     }
 });
 
+// apply 
+router.post("/applyinternship", authenticate, async (req, res) => {
+  try {
+    console.log(req.body);
+    const {job_id, name, email, phone, college, resume} = req.body;
+    if(!name || !email || !phone || ! college || !resume) {
+      console.log("Please fill the apply form");
+      return res.status(400).json({error: "Please fill the apply form"})
+    }
+    const jobApply = await Job.findOne({_id: job_id});
+    console.log(jobApply)
+    if(jobApply) {
+      console.log('applied by length: ', jobApply.applied_by.length)
+      for(let i = 0; i < jobApply.applied_by.length; i++) {
+        if(jobApply.applied_by[i].email === email) {
+          return res.status(400).json({error: "You have already applied for this position at this company"})
+        }
+      }
+      const userApply = await User.findOne({_id: req.userID});  
+      await jobApply.save();
+      const jobAppliedBy = await  jobApply.addApply(name, email, phone, college, resume);
+      const userAppliedBy = await userApply.addCompany(jobApply._id, jobApply.company, jobApply.internship, jobApply.location, jobApply.start_date, jobApply.duration, jobApply.stipend)
+      await userApply.save();
+      console.log('Application sent successfully')
+      res.status(201).json({message: "User internship added successfully"});
+    
+    } else {
+      console.log('Job not found')
+      res.status(400).json({error: "Job not found"})
+    }
+  } catch(error) {
+    console.log(error)
+    res.status(400).json({error: "There is a error"})
+  }
+});
+
+// initialize multer
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
-      cb(null, './files');
+      cb(null, 'uploadresumes');
     },
     filename(req, file, cb) {
       cb(null, `${new Date().getTime()}_${file.originalname}`);
@@ -139,39 +176,17 @@ const upload = multer({
   }
 });
 
-// apply 
-router.post("/applyinternship", authenticate, async (req, res) => {
-  try {
-    console.log(req.body);
-    // for (var [key, value] of req.body.entries()) { 
-    //   console.log(key, value);
-    // }
-    // console.log(req.formData);
-    const {job_id, name, email, phone, college, resume} = req.body;
-    if(!name || !email || !phone || ! college || !resume) {
-      console.log("Please fill the apply form");
-      return res.status(400).json({error: "Please fill the apply form"})
-    }
-    const jobApply = await Job.findOne({_id: job_id});
-    console.log(jobApply)
-    if(jobApply) {
-      if(! await Job.findOne({applied_by: {$elemMatch: {email: email}}})) {
-        const userMessage = await  jobApply.addApply(name, email, phone, college, resume);
-        await jobApply.save();
-        console.log('Application sent successfully')
-        res.status(201).json({message: "User internship added successfully"});
-      } else{
-        res.status(400).json({error: "You have already filled the application"})
-      }
-    } else {
-      console.log('Job not found')
-      res.status(400).json({error: "Job not found"})
-    }
-  } catch(error) {
-    console.log(error)
-    res.status(400).json({error: "There is a error"})
-  }
+//uploading resume
+router.post("/uploadresume", upload.single('resume'), uploadUserResume)
+
+//applied at
+router.get("/appliedat", authenticate, (req, res) => {
+  res.send(req.rootUser.applied);
 });
+// router.get("/appliedat", authenticate, (req, res) => {
+//   const userContact = await User.findOne({_id: req.userID});
+//   console.log('User Contact (applied at)', userContact)
+// })
 
 // logout
 router.get("/logout", (req, res) => {

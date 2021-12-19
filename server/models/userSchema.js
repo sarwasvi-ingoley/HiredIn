@@ -58,6 +58,32 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
+
+  applied: [
+    {
+      job_id: {
+        type: String,
+      },
+      company_name: {
+        type: String,
+      },
+      internship: {
+        type: String,
+      },
+      location: {
+        type: String,
+      },
+      start_date: {
+        type: String,
+      },
+      duration: {
+        type: String,
+      },
+      stipend: {
+        type: String,
+      },
+    }
+  ],
 });
 
 //we are hashing the password
@@ -96,6 +122,19 @@ userSchema.methods.addMessage = async function(name, email, phone, message) {
     this.messages = this.messages.concat({name, email, phone, message});
     await this.save();
     return this.messages;
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+// store the applied internship company
+userSchema.methods.addCompany = async function(job_id, company_name, internship, location, start_date, duration, stipend) {
+  try {
+    console.log('add company')
+    console.log(this.applied)
+    this.applied = this.applied.concat({job_id, company_name, internship, location, start_date, duration, stipend});
+    await this.save();
+    return this.applied_by;
   } catch(error) {
     console.log(error);
   }

@@ -9,8 +9,8 @@ exports.getAllInternships = async (req,res) =>{
     // const resultPerPage = 8;
      const Internshipcount = await internship.countDocuments();
     console.log('getting internship')
-    // const apifeature = new ApiFeatures(internship.find(),req.query).search().filter().pagination(resultPerPage);
     const apifeature = new ApiFeatures(internship.find(),req.query).search().filter();
+    // .pagination(resultPerPage);
     const display_internships = await apifeature.query;
 
     res.status(200).json({
@@ -18,19 +18,11 @@ exports.getAllInternships = async (req,res) =>{
         display_internships,
         Internshipcount,
     });
-    // const response = {
-        
-    //     name : "XYZ",
-    //     intern_name:'Web Development',
-    //     stipend:'10000',
-    // }
-
-    // console.log(response)
-    // res.status(200).json({
-    //     response
-    // })
-
 };
+
+exports.uploadUserResume = async(req, res) => {
+    res.send(`${req.file.path}`)
+}
 
 //get particular internship details
 exports.getInternshipdetails = catchasyncerrors(async(req,res,next) => {

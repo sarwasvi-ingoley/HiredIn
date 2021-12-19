@@ -2,18 +2,22 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import contactimage from "../images/contactus.png";
 import {useHistory, useLocation} from 'react-router-dom';
+import Axios from "axios";
 
 const ApplyInternship = () => {
  
   // for on change event
   const [userData, setUserData] = useState({name: "", email: "", phone: "", college: "", resume: ""})
   const [pdfFile, setPdfFile] = useState(null);
+  const [companyName, setCompanyName] = useState(null);
   const formData = new FormData();
   const {state} = useLocation();
-  const job_id = JSON.stringify(state)
   const history = useHistory();
-  // don't touch this
+  
   const userContact = async() => {
+    console.log('State', {state})
+    console.log('State job_id', state['job_id'])
+    setCompanyName(state['company_name'])
     try {
       const res =  await fetch('/getdata', {
         method: 'GET',
@@ -55,16 +59,15 @@ const ApplyInternship = () => {
     }
     
     formData.append('resume', file);
-    
-
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }
+    const { data } = await Axios.post('/uploadresume', formData, config);
+    setUserData({ ...userData, resume: data });
  }
   useEffect(() => {
-    console.log({state})
     userContact();
   }, []);
 
@@ -79,14 +82,6 @@ const ApplyInternship = () => {
     e.preventDefault();
     const {name, email, phone, college, resume} = userData;
     console.log({name, email, phone, college, resume})
-    formData.append('job_id', job_id);
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('college', college);
-    for (var [key, value] of formData.entries()) { 
-      console.log(key, value);
-    }
     const res = await fetch('/applyinternship', {
       method: "POST",
       headers: {
@@ -95,12 +90,10 @@ const ApplyInternship = () => {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        job_id: state,
+        job_id: state['job_id'],
         name, email, phone, college, 
-        resume: "res",
-        // resume,
+        resume,
       }),
-      // body: formData,
     });
     const data = await res.json();
     if(res.status === 400 || !data) {
@@ -126,24 +119,27 @@ const ApplyInternship = () => {
                      </div>
                     <div className = "col-md-6 col-10 mx-auto">
                         <form>
+                          <h5 for="exampleFormControlInput1" class="form-label" align = "center" style= {{color: 'grey'}}><b>{companyName}</b></h5>
+                            {/* <h1 className ="text-center"  style= {{color: 'grey'}}> </h1> */}
+                        
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                                <label for="exampleFormControlInput1" class="form-label">Full Name *</label>
                                 <input type="text" class="form-control" name = "name" id="exampleFormControlInput1" value = {userData.name} onChange = {handleInputs} placeholder="Enter your Fullname *" required/>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <label for="exampleFormControlInput1" class="form-label">Email *</label>
                                 <input type="email" class="form-control" name = "email" id="exampleFormControlInput1" value = {userData.email} onChange = {handleInputs} placeholder="name@example.com *" required/>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Contact</label>
+                                <label for="exampleFormControlInput1" class="form-label">Contact *</label>
                                 <input type="number" class="form-control" name = "phone" id="exampleFormControlInput1" value = {userData.phone} onChange = {handleInputs}placeholder="Enter your contact number *" required/>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">College / Orgazation Name</label>
+                                <label for="exampleFormControlInput1" class="form-label">College / Orgazation Name *</label>
                                 <input type="text" class="form-control" name = "college" id="exampleFormControlInput1" rows="3" required value = {userData.college} placeholder="Enter your college or organization *" onChange = {handleInputs} required/>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Resume</label>
+                                <label for="exampleFormControlInput1" class="form-label">Resume *</label>
                                 <input type="file" class="form-control" name = "resume" id="exampleFormControlInput1" rows="3" onChange={uploadPdf} required/>
                             </div>
                             

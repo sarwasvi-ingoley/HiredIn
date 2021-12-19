@@ -5,6 +5,9 @@ import vision from "../images/vision.jpg";
 function About() {
   return (
     <>
+            <div className ="my-5">
+                <h1 className ="text-center">About Us</h1>
+            </div>
             <div className ="container-fluid mt-5" >
                 <div className ="row">
                     <div className = "col-md-10 col-12 mx-auto">

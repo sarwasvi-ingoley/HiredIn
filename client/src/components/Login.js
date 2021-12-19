@@ -36,7 +36,7 @@ function Login() {
  
   return (
     <div className ="my-5">
-      <h1 className ="text-center">Sign Up</h1>
+      <h1 className ="text-center">Login</h1>
       <div className="container">
         <div className = "col-md-6 col-10 mx-auto">
           <form>

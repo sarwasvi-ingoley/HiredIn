@@ -36,6 +36,10 @@ app.get("/about", (req, res) => {
   res.send("Hello about from the server");
 });
 
+app.get("/appliedat", (req, res) => {
+  res.send("Hello about from the server");
+});
+
 // app.get("/contact", (req, res) => {
 //   res.send("Hello contact from the server");
 // });
@@ -45,7 +49,6 @@ app.get("/signin", (req, res) => {
 // app.get("/signup", (req, res) => {
 //   res.send("Hello signup from the server");
 // });
-
 app.listen(3001, () => {
   console.log("Server is running at port 3001");
 });

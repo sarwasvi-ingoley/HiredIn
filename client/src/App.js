@@ -1,4 +1,4 @@
-import React, { useReducer, createContext,useState } from "react";
+import React, { useReducer, createContext, useState } from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar";
 import './index.css';
@@ -16,11 +16,11 @@ import Logout from "./components/Logout";
 import ErrorPage from "../src/components/ErrorPage";
 
 import ApplyInternship from "../src/components/ApplyInternship";
+import AppliedAt from "../src/components/AppliedAt";
 import {initialState, reducer} from "../src/reducer/UseReducer";
 import"./components/Internships.js";
 // context: API
 export const UserContext = createContext();
-
 
 // const Routing = () => {
 //   return(
@@ -32,9 +32,7 @@ export const UserContext = createContext();
 //         <Contact />
 //       </Route>
 //       <Route path="/Internships">
-//         <Internships
-//           onLocationFilter = {handleFilterLocation}
-//         />
+//         <Internships />
 //       </Route>
 //       <Route path="/About">
 //         <About />
@@ -48,9 +46,11 @@ export const UserContext = createContext();
 //       <Route path="/Logout">
 //         <Logout />
 //       </Route>
-
 //       <Route path="/ApplyInternship">
 //         <ApplyInternship />
+//       </Route>
+//       <Route path="/AppliedAt">
+//         <AppliedAt />
 //       </Route>
 //       <Route>
 //         <ErrorPage />
@@ -58,6 +58,24 @@ export const UserContext = createContext();
 //     </Switch>
 //   )
 // }
+
+// const App = () => {
+  
+//   const [state, dispatch] = useReducer(reducer, initialState)
+//   return (
+//     <>
+//       <UserContext.Provider value = {{state, dispatch}}>
+
+     
+//       <Navbar />
+//       <Routing />
+      
+//       </UserContext.Provider>
+//     </>
+//   );
+// };
+
+// export default App;
 
 const App = () => {
   const[data, setData] = useState();
@@ -116,6 +134,9 @@ const App = () => {
       <Route path="/ApplyInternship">
         <ApplyInternship />
       </Route>
+      <Route path="/AppliedAt">
+         <AppliedAt />
+       </Route>
       <Route>
         <ErrorPage />
       </Route>
