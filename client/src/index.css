@@ -117,3 +117,19 @@ html{
   box-shadow: 0 0 5px rgb(36, 35, 35);
   transform: translate(-1vmax);
 }
+.company_name{
+  font-size: 16px;
+  font-weight: 600;
+  color: #8e9292;
+}
+.internship_name{
+  font-size: 18px;
+  font-weight: bold;
+}
+.item_heading{
+  display: flex;
+}
+.item_detail{
+  
+  flex-wrap: wrap; 
+}
