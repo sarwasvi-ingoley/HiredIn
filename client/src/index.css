@@ -133,3 +133,10 @@ html{
   
   flex-wrap: wrap; 
 }
+.applyfilters{
+  display: flex;
+}
+.filterinp{
+  
+  flex-wrap: wrap; 
+}

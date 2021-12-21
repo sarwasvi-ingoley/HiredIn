@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
+import signupimage from "../images/signup.png";
 function Signup() {
   const history = useHistory();
   const [user, setUser] = useState({
@@ -56,13 +56,18 @@ function Signup() {
     } 
   };
   return (
-    <div className ="my-5">
-      <h1 className ="text-center">Sign Up</h1>
-      <div className="container">
+    <div className ="container login_div">
+      <div className ="row">
+        <div className ="col-md-6 col-12 hero-text order-md-0 order-1" style={{paddingTop:'130px'}}>
+             <img src ={signupimage} alt="vectorimage" height="470" style={{paddingRight:'50px'}}/>
+         </div>
         <div className = "col-md-6 col-10 mx-auto">
           <form method="POST">
+            <div className ="my-5">
+              <h1 className ="text-center" > Create New Account </h1>
+             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1">Your Name *</label>
+              <label for="exampleInputPassword1">Name *</label>
               <input
                 type="text"
                 name="name"
@@ -70,7 +75,8 @@ function Signup() {
                 id="exampleInputPassword1"
                 value={user.name}
                 onChange={handleInputs}
-                placeholder="Your Name *"
+                placeholder="Enter your name"
+                required
               />
             </div>
 
@@ -84,14 +90,15 @@ function Signup() {
                 aria-describedby="emailHelp"
                 value={user.email}
                 onChange={handleInputs}
-                placeholder="Enter email *"
+                placeholder="Enter email"
+                required
               />
               <small id="emailHelp" class="form-text text-muted">
                 We'll never share your email with anyone else.
               </small>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1">Phone No. *</label>
+              <label for="exampleInputPassword1">Contact No. *</label>
               <input
                 type="text"
                 name="phone"
@@ -99,7 +106,8 @@ function Signup() {
                 id="exampleInputPassword1"
                 value={user.phone}
                 onChange={handleInputs}
-                placeholder="Phone *"
+                placeholder="Enter Contact number"
+                required
               />
             </div>
             <div class="mb-3">
@@ -111,7 +119,8 @@ function Signup() {
                 id="exampleInputPassword1"
                 value={user.password}
                 onChange={handleInputs}
-                placeholder="Password *"
+                placeholder="Enter Password *"
+                required
               />
             </div>
             <div class="mb-3">
@@ -123,7 +132,8 @@ function Signup() {
                 id="exampleInputPassword1"
                 value={user.cpassword}
                 onChange={handleInputs}
-                placeholder="Password *"
+                placeholder="Re-enter Password *"
+                required
               />
             </div>
             <div className="text-center">
@@ -136,9 +146,10 @@ function Signup() {
                 Register
               </button>
             </div>
+            <p align = "center">Have an account? <Link exact className="loginlink" style={{ color: '#022b2b'}}  to={{pathname: "/login"}}>Login</Link></p>
           </form>
         </div>
-        <p align = "center">Have an account? <Link exact className="loginlink" style={{ color: '#022b2b'}}  to={{pathname: "/login"}}>Login</Link></p>
+        
       </div>    
     </div>    
   );

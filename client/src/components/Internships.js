@@ -11,25 +11,26 @@ const Internships= ({onLocationFilter}) => {
   const [userData, setUserData] = useState({})
   const[SearchTerm, setSearchTerm]= useState("");
   const[LocTerm, setLocTerm]= useState("");
+  const[WorktypeTerm, setWorktype]= useState("");
   const [data, getData] = useState(null);
-  const [filters,setFilters] = useState({
-    filterlocation: "",
-  })
-  const handleInput = (field) => (event) =>{
-    const {value} =event.target;
-    setFilters({
-      ...filters,
-      [field]: value,
-    });
-    switch(field){
-      case "filterlocation":
-        onLocationFilter(value);
-        // setLocTerm(value);
-        break;
-      default:
-        break;
-    }
-  }
+  // const [filters,setFilters] = useState({
+  //   filterlocation: "",
+  // })
+  // const handleInput = (field) => (event) =>{
+  //   const {value} =event.target;
+  //   setFilters({
+  //     ...filters,
+  //     [field]: value,
+  //   });
+  //   switch(field){
+  //     case "filterlocation":
+  //       onLocationFilter(value);
+  //       // setLocTerm(value);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
   const callInternshipPage = async() => {
     try {
       const res =  await fetch('/internships', {
@@ -100,39 +101,77 @@ const Internships= ({onLocationFilter}) => {
                         {/* <input type="text" id="filterdata"  placeholder="Location" className= "prompt" onChange ={(e) => setLocTerm(e.target.value)}/> */}
                        
                       </div>   
-                      <div className= "col-md-8 mx-auto" style ={{marginTop: '30px',paddingLeft: '10px'}}>
-
-                       
+                      <div className= "applyfilters col-md-8 mx-auto" style ={{marginTop: '30px',paddingLeft: '10px'}}>
+                        <div className ="filterinp">
+                          <input type="text" id="filterlocation"  placeholder="Location" className= "prompt" style ={{width: '350px', height: '35px'}} onChange ={(e) => setLocTerm(e.target.value)}/>
+                        </div>
                        {/* <input type="text" id="filterlocation"  placeholder="Location" className= "prompt" onChange ={handleInput("filterlocation")}/> */}
-                      <input type="text" id="filterlocation"  placeholder="Location" className= "prompt" style ={{width: '900px', height: '35px'}} onChange ={(e) => setLocTerm(e.target.value)}/>
-           
-        </div>
-              </div>
+                        
+                        <div class="filterinp" style ={{paddingLeft: '30px'}}>
+                        <select class="choosetype" id="chooseworktype" required style ={{width: '350px', height: '35px'}} onChange ={(e) => setWorktype(e.target.value)}>
+                          <option selected value="">Type</option>
+                          <option>Part Time</option>
+                          <option>Full Time</option>
+                        </select>
+                        </div>
+                      </div>
+                      {/* <div class="col-md-3"> */}
+                        {/* <label for="validationCustom04" class="form-label">State</label> */}
+                        {/* <select class="form-select" id="chooseworktype" required>
+                          <option selected disabled value="">Type</option>
+                          <option>Part Time</option>
+                          <option>Part Time</option>
+                        </select>
+                      </div> */}
+                </div>
             {
-                data.display_internships.filter((value,valuein) => {
-                  if(SearchTerm === "" && LocTerm ===""){
+                data.display_internships.filter((value) => {
+                  if(SearchTerm === "" && LocTerm ==="" && WorktypeTerm ==""){
                     console.log("hello")
                     return value
-                  }else if(SearchTerm != "" && LocTerm ===""
+                  }else if(SearchTerm != "" && LocTerm ===""  && WorktypeTerm ==""
                   ){
                     console.log(SearchTerm)
                     return value.internship.toLowerCase().includes(SearchTerm.toLowerCase())
-                  }else if(SearchTerm === "" && LocTerm !="")
+                  }else if(SearchTerm === "" && LocTerm !=""  && WorktypeTerm ==="")
                   {
                     console.log("hello")
                     return value.location.toLowerCase().includes(LocTerm.toLowerCase())
-                   }
-                   else if(value.internship.toLowerCase().includes(SearchTerm.toLowerCase()) && value.location.toLowerCase().includes(LocTerm.toLowerCase()))
+                  }else if(SearchTerm === "" && LocTerm ===""  && WorktypeTerm !="")
                   {
                     console.log("hello")
-                    return value
-                    // return value.internship.toLowerCase().includes(SearchTerm.toLowerCase())
+                    return value.worktype.toLowerCase().includes(WorktypeTerm.toLowerCase())
+                   }
+                  //  else if(value.internship.toLowerCase().includes(SearchTerm.toLowerCase()) && value.location.toLowerCase().includes(LocTerm.toLowerCase()))
+                  // {
+                  //   console.log("hello")
+                  //   return value
+                  // }
+                  else if(SearchTerm != "" && LocTerm !=""  && WorktypeTerm ==="")
+                  {
+                    console.log("hello")
+                    return value.internship.toLowerCase().includes(SearchTerm.toLowerCase()) && value.location.toLowerCase().includes(LocTerm.toLowerCase())
+                  }
+                  else if(SearchTerm != "" && LocTerm ===""  && WorktypeTerm !="")
+                  {
+                    console.log("hello")
+                    return value.internship.toLowerCase().includes(SearchTerm.toLowerCase()) && value.worktype.toLowerCase().includes(WorktypeTerm.toLowerCase())
+                  }
+                  else if(SearchTerm === "" && LocTerm !=""  && WorktypeTerm !="")
+                  {
+                    console.log("hello")
+                    return value.location.toLowerCase().includes(LocTerm.toLowerCase()) && value.worktype.toLowerCase().includes(WorktypeTerm.toLowerCase())
+                  }
+                  else if(SearchTerm != "" && LocTerm !=""  && WorktypeTerm !="")
+                  {
+                    console.log("hello")
+                    return value.internship.toLowerCase().includes(SearchTerm.toLowerCase()) && value.location.toLowerCase().includes(LocTerm.toLowerCase()) && value.worktype.toLowerCase().includes(WorktypeTerm.toLowerCase())
                   }
                 })
 
                 .map((item)=>(
                 // <Link className="internshipCard" to={`/internship/${internship._id}`}>
-                <div className = "internship col-md-10 col-12 mx-auto">
+                <div className = "internship col-md-10 col-12 mx-auto" style ={{marginTop: '30px'}}>
                   <div className ="internship_info">
                    {/* <ApplyInternship message = "message" /> */}
                    <div className= "internship_name">
@@ -196,7 +235,8 @@ const Internships= ({onLocationFilter}) => {
                           pathname: "/applyinternship",
                           state: {
                             job_id: item._id,
-                            company_name: item.company,}}}>Apply Now
+                            company_name: item.company,
+                            }}}>Apply Now
                           <i class='fas fa-angle-right' style = {{color: '#315F8D',paddingLeft:'5px'}}></i>
                           </Link>
                           
@@ -207,8 +247,7 @@ const Internships= ({onLocationFilter}) => {
                 // </Link> 
               ))         
             }
-            
-             
+
         </div>
     </>
   );

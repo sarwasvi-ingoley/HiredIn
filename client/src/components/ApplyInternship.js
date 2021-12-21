@@ -135,7 +135,7 @@ const ApplyInternship = () => {
                                 <input type="number" class="form-control" name = "phone" id="exampleFormControlInput1" value = {userData.phone} onChange = {handleInputs}placeholder="Enter your contact number *" required/>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">College / Orgazation Name *</label>
+                                <label for="exampleFormControlInput1" class="form-label">College / Organization Name *</label>
                                 <input type="text" class="form-control" name = "college" id="exampleFormControlInput1" rows="3" required value = {userData.college} placeholder="Enter your college or organization *" onChange = {handleInputs} required/>
                             </div>
                             <div class="mb-3">

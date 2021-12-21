@@ -136,7 +136,7 @@ router.post("/applyinternship", authenticate, async (req, res) => {
       const userApply = await User.findOne({_id: req.userID});  
       await jobApply.save();
       const jobAppliedBy = await  jobApply.addApply(name, email, phone, college, resume);
-      const userAppliedBy = await userApply.addCompany(jobApply._id, jobApply.company, jobApply.internship, jobApply.location, jobApply.start_date, jobApply.duration, jobApply.stipend)
+      const userAppliedBy = await userApply.addCompany(jobApply._id, jobApply.company, jobApply.internship, jobApply.location, jobApply.startdate, jobApply.duration, jobApply.stipend, jobApply.worktype)
       await userApply.save();
       console.log('Application sent successfully')
       res.status(201).json({message: "User internship added successfully"});

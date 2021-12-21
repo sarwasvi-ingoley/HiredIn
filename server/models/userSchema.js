@@ -82,6 +82,9 @@ const userSchema = new mongoose.Schema({
       stipend: {
         type: String,
       },
+      worktype: {
+        type: String,
+      },
     }
   ],
 });
@@ -128,11 +131,11 @@ userSchema.methods.addMessage = async function(name, email, phone, message) {
 }
 
 // store the applied internship company
-userSchema.methods.addCompany = async function(job_id, company_name, internship, location, start_date, duration, stipend) {
+userSchema.methods.addCompany = async function(job_id, company_name, internship, location, start_date, duration, stipend, worktype) {
   try {
     console.log('add company')
     console.log(this.applied)
-    this.applied = this.applied.concat({job_id, company_name, internship, location, start_date, duration, stipend});
+    this.applied = this.applied.concat({job_id, company_name, internship, location, start_date, duration, stipend, worktype});
     await this.save();
     return this.applied_by;
   } catch(error) {
