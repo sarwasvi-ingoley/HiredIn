@@ -67,13 +67,13 @@ const AppliedAt = () => {
   if(data == null) {
     return <p>Loading...</p>
   } else if(data == "No internships") {
-    return <div><h1 className ="text-center">Applied At</h1><div><h5 align = "center" style= {{color: 'grey'}}>You have not applied anywhere</h5></div></div>
+    return <div><h1 className ="text-center" style ={{marginTop: '90px'}}>Applied At</h1><div><h5 align = "center" style= {{color: 'grey'}}>You have not applied anywhere</h5></div></div>
   }
 
   return (
     <>
       <div className ="my-5">
-            <h1 className ="text-center">Applied At</h1>
+            <h1 className ="text-center" style ={{marginTop: '90px'}}>Applied At</h1>
       </div>
       {
             data.map((item)=>(

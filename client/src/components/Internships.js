@@ -95,7 +95,7 @@ const Internships= ({onLocationFilter}) => {
     <>
      <div className ="container-fluid">
               <div className ="row">
-                      <div className= "col-md-8 mx-auto" style ={{marginTop: '30px',paddingLeft: '10px'}}>
+                      <div className= "col-md-8 mx-auto" style ={{marginTop: '100px',paddingLeft: '10px'}}>
 
                         <input type="text" id="filterinternshiptype"  placeholder="Internship Type" className= "prompt" style ={{width: '900px', height: '35px'}} onChange ={(e) => setSearchTerm(e.target.value)}/>
                         {/* <input type="text" id="filterdata"  placeholder="Location" className= "prompt" onChange ={(e) => setLocTerm(e.target.value)}/> */}

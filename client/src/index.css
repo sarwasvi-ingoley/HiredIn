@@ -6,7 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* .container-fluid{
+  position: sticky;
+} */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -31,9 +33,10 @@ code {
 .navbar-brand{
   color:#f1e9e9;
 }
-.navbar_style{
+/* .navbar_style{
   background-color:#161818;
-}
+  
+} */
 a:link, a:visited,a:hover, a:active{
   color: #f1e9e9;
 }
@@ -41,10 +44,12 @@ a:link, a:visited,a:hover, a:active{
   color: #f1e9e9;
 }
 
-html{
-  scroll-behavior: smooth;
-  font-family: PT-Serif;
+#header{
+  position: fixed;
+  top: 0;
+  z-index: 999;
 }
+
 .box {
   position: relative;
   width: 100%;
@@ -137,6 +142,9 @@ html{
   display: flex;
 }
 .filterinp{
-  
   flex-wrap: wrap; 
+}
+
+.catgconatiner{
+  justify-content:center;
 }

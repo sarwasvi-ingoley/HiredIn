@@ -82,12 +82,12 @@ function Login() {
     <div className ="container login_div">
       <div className ="row">
         <div className ="col-md-6 col-12 hero-text order-md-0 order-1">
-             <img src ={loginimage} alt="vectorimage"  height="450" style={{paddingTop:'80px'}}/>
+             <img src ={loginimage} alt="vectorimage"  height="450" style={{marginTop:'70px'}}/>
          </div>
         <div className = "col-md-6 col-10 mx-auto">
           <form>
             <div className ="my-5">
-              <h1 className ="text-center" > Login </h1>
+              <h1 className ="text-center" style ={{marginTop: '100px'}}> Login </h1>
              </div>
             <div class="mb-3">
               <label for="exampleInputEmail1">Email address *</label>

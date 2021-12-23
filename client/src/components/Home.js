@@ -16,7 +16,7 @@ const Home = () =>{
     return(
         <>
         
-           <div className ="container-fluid mt-5">
+        <div className ="container-fluid mt-5">
          <div className ="row">
               <div className = "col-md-10 col-12 mx-auto">
                  <div className ="row">
@@ -74,9 +74,9 @@ const Home = () =>{
             <div className = "col-md-10 col-12 mx-auto">
                 <div className ="catgcontainer">
                     <h2 style={{margin: '30px 0px 40px 0px', textAlign:'center', fontWeight: '600', color: 'rgb(59, 59, 59)'}}>Popular categories</h2>
-                    <div className= "row">
+                    <div className= "row justify-content-center align-items-center">
                         <div className ="col-md-3">
-                        <a className = "catgclick" href="contact">
+                       
                             <div className= "catgimg">
                                 <img src={partime} alt="partime" height="100"/>
                             </div>
@@ -84,42 +84,31 @@ const Home = () =>{
                                 <p className="ctext" style ={{paddingLeft: '15px'}}> Part-time </p>
                                 
                             </div>
-                        </a>
+                        
                         </div>
                         <div className ="col-md-3">
-                        <a className = "catgclick" href="contact">
+                       
                             <div className= "catgimg">
                                 <img src={fulltime} alt="fulltime" height="100"/>
                             </div>
                             <div className= "catgtext">
                                 <p className="ctext" style = {{paddingLeft: '45px'}}> Full-time </p>
                             </div>
-                        </a>
+                      
                         </div>
                         <div className ="col-md-3">
-                        <a className = "catgclick" href="contact">
+                        
                             <div className= "catgimg" style={{marginLeft: '25px'}}>
                                 <img src={workfromhome} alt="workfromhome" height="100"/>
                             </div>
                             <div className= "catgtext">
                                 <p className="ctext" style = {{paddingLeft: '30px'}}> Work From Home</p>
                             </div>
-                        </a>
+                       
                         </div>
-                        <div className ="col-md-3">
-                        <a className = "catgclick" href="./Contact">
-                            <div className= "catgimg" style={{marginLeft: '55px'}}>
-                                <img src= {engineering} alt="engineering" height="100"/>
-                            </div>
-                            <div className= "catgtext">
-                                <p className="ctext" style = {{paddingLeft: '63px'}}>Engineering</p>
-                            </div>
-                        </a>
-                        </div>
+                       
                     </div>
-                     {/* <a className="categoryclick" href ="contact.hbs"> --}}
-                        
-                     </a>              */}
+                    
                  </div>
              </div>
          </div>

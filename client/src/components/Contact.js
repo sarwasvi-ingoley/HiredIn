@@ -61,7 +61,7 @@ function Contact() {
   return (
     <>
             <div className ="my-5">
-                <h1 className ="text-center"> Get in Touch With Us </h1>
+                <h1 className ="text-center" style ={{marginTop: '90px'}}> Get in Touch With Us </h1>
             </div>
             <div className ="container contact_div">
                 <div className ="row">
@@ -86,7 +86,7 @@ function Contact() {
                                 <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                                 <textarea class="form-control" name = "message" id="exampleFormControlTextarea1" rows="3" required value = {userData.message} placeholder="Your Message" onChange = {handleInputs}></textarea>
                             </div>
-                            <div class="mb-7">
+                            <div class="mb-7" style ={{marginBottom: '30px'}}>
                                 <button class="btn btn-primary" type="submit" onClick = {contactForm}>Submit form</button>
                             </div>
                         </form>

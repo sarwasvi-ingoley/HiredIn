@@ -110,7 +110,7 @@ const ApplyInternship = () => {
   return (
     <>
             <div className ="my-5">
-                <h1 className ="text-center"> Apply Now </h1>
+                <h1 className ="text-center" style ={{marginTop: '90px'}}> Apply Now </h1>
             </div>
             <div className ="container contact_div">
                 <div className ="row">

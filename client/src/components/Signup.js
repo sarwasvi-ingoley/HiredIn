@@ -64,7 +64,7 @@ function Signup() {
         <div className = "col-md-6 col-10 mx-auto">
           <form method="POST">
             <div className ="my-5">
-              <h1 className ="text-center" > Create New Account </h1>
+              <h1 className ="text-center" style ={{marginTop: '90px'}} > Create New Account </h1>
              </div>
             <div class="mb-3">
               <label for="exampleInputPassword1">Name *</label>
