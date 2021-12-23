@@ -25,27 +25,35 @@ An online platform which will provide users various internship opportunities as 
 
 # User Interface
 1. Home Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147257349-92027852-10a7-48d6-b1b6-31fa93a69160.png)
 
 2. Signup Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147258126-6d279ea1-8043-4721-9889-52ad32c86e12.png)
 
 3. Login Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147258374-36ea0192-23f1-4f3a-94e7-262d314925f6.png)
 
 4.View Internships Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147258555-ca7c67e3-54b5-4c06-97f2-f008b2c46833.png)
 
 5. Apply Internship Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147258954-9f0fbbec-148c-4e3a-bc5e-4856b77fc3c8.png)
 
 6. Applied Internship Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147259239-958e0420-ce0d-468f-b2e4-b19d6c5e2522.png)
 
 7. Contact Us Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147259714-fbfb4623-4ae9-4078-b3c9-5ec942fb51f2.png)
 
 8. About Us Page
+
 ![image](https://user-images.githubusercontent.com/83391233/147259976-bcdc4bf3-9d01-4a34-8916-e4a71662951c.png)
 
 
