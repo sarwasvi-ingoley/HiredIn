@@ -27,6 +27,10 @@ An online platform which will provide users various internship opportunities as 
 1. Home Page
 
 ![image](https://user-images.githubusercontent.com/83391233/147257349-92027852-10a7-48d6-b1b6-31fa93a69160.png)
+![image](https://user-images.githubusercontent.com/83391233/147276307-4fdd2d73-8169-4483-850a-3362590b82d3.png)
+
+![image](https://user-images.githubusercontent.com/83391233/147276188-6c038518-34b2-4a83-bf14-3d2d7e3909d3.png)
+
 
 2. Signup Page
 
