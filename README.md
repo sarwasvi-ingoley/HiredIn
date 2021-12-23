@@ -1,4 +1,4 @@
-﻿# MERN-Project
+﻿# HiredIn
 An online platform which will provide users various internship opportunities as well as help them explore various internships based on their area of interest. 
 
 # How to run
