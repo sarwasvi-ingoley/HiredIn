@@ -15,9 +15,9 @@ An online platform which will provide users various internship opportunities as 
 
 # Functionalities
 1. Login/Register
-2. View Internships: A user can view various types of internships and filter information based on:
-    a. Internship type (example: web developement)
-    b. Location (eg: Hyderabad, Gurgaon)
+2. View Internships: A user can view various types of internships and filter information based on:<br />
+    a. Internship type (example: Web developement) <br />
+    b. Location (eg: Hyderabad, Gurgaon)<br />
     c. Work type (eg: Part time/Full time)
 3. Apply Internship: User can apply for an internship of their interest by filling the details 
 4. User can view internships where they have applied
